@@ -1,11 +1,7 @@
 #include <stdio.h>
 
-    float sum () {
+    float sum (int sizeOfElement) {
         int i;
-        int sizeOfElement;
-    
-        printf("enter size of data: ");
-        scanf("%d", &sizeOfElement);
 
         float number[sizeOfElement];
 
@@ -22,13 +18,24 @@
         return sum;
     }
 
-    
+    float find_mean (float sumation, int number_of_values) {
+        return sumation / number_of_values;
+    }
+
+
     
 int main() {
+    int sizeOfElement;
+    printf("enter size of data: ");
+    scanf("%d", &sizeOfElement);
 
     float sumation;
-    sumation = sum();
-    printf("sumation = %.3f", sumation);
+    sumation = sum(sizeOfElement);
+    printf("sumation = %.3f\n", sumation);
+
+    float mean;
+    mean = find_mean(sumation, sizeOfElement);
+    printf("mean = %.3f", mean);
 
     return 0;
 }
