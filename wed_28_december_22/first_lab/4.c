@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main () {
-    float radius, area;
+    float radius = 0.0, area = 0.0;
 
     printf("Please input radiis: ");
     scanf("%f", &radius);
