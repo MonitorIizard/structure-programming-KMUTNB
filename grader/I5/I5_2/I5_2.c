@@ -24,7 +24,10 @@ int main () {
         }
 
     }
-    
-    printf("%d %d", max_number, count);
+    if(max_number != 0) {
+        printf("%d %d", max_number, count);
+    } else {
+        printf("0 0");
+    }
     return 0;
 }
