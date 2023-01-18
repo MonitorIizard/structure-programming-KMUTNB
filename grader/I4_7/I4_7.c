@@ -2,8 +2,8 @@
 
 int main () {
     int size = 0;
-    int number[size]; 
     scanf("%d", &size);
+    int number[size]; 
 
     for(int j = 0; j < size; j++) {
         scanf("%d", &number[j]);
