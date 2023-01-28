@@ -15,13 +15,12 @@ int main () {
             }
         }
     }
-    i = 0;
-    char s[] = ""; 
-    int order[4];
+    char s[4]; 
+    int order[3];
 
-    scanf("%s", &s[1]);
+    scanf("%s", &s);
 
-    for(i = 1; i <= 3; i++){
+    for(i = 0; i < 3; i++){
         if(s[i] == 'A') {
             order[i] = 0;
         }
