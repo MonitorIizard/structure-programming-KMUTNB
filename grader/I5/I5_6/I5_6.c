@@ -10,7 +10,7 @@ int main () {
 
     for (int j = 0; j < size; j++)
     {
-        printf("%d %d",coordinate[j][0], coordinate[j][1])x;
+        printf("%d %d",coordinate[j][0], coordinate[j][1]);
     }
     
     return;
