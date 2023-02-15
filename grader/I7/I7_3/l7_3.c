@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int cal_fibonacci (int number) {
+    printf("hello %d\n", number);
     if (number == 1) {
         return 1;
     }
