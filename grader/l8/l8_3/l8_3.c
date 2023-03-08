@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 // int reverse (char *c) {
 //     // now *c represent value from that position
 //     //int i = 0; j,k;
@@ -20,7 +21,7 @@ int main () {
     int i = 0;
     int size = 0;
 
-    gets(messege);
+    fgets(messege);
     //printf("%s", messege);
 
     for (int i = 0; i < 100; i++){
