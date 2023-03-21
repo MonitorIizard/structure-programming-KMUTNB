@@ -9,13 +9,24 @@ typedef struct
 } vector3D;
 
 
-float findlength (float x, float y, float z) {
+float FindLength (float x, float y, float z) {
     float length = sqrt(pow(x, 2)+  pow(y,  2)+  pow(z, 2));
     return length;
 } 
 
 int main () {
-    printf("%f.3", findlength(0.5, 1.2, 2.0));
+    vector3D coordinate[100];
+    int SIZE = 0;
+    scanf("%d", &SIZE);
+
+    for (int i = 0; i < SIZE; i++) {
+        scanf("%f %f %f", &coordinate[i].x, &coordinate[i].y, &coordinate[i].z);
+        printf("%.2f", FindLength(coordinate[i].x, coordinate[i].y, coordinate[i].z));
+    }
+
+    // for (int i = 0; i < SIZE; i++) {
+        
+    // }
 
     return 0;
 }
