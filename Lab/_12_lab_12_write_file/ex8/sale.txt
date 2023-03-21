@@ -1,0 +1,5 @@
+BK001 Harry   200
+BK002 Steve    200
+CD001 AKB48         300
+ITOO1 Iphone        15000
+IT002 SAMSUNG       20000

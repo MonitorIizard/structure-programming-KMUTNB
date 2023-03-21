@@ -32,5 +32,12 @@
 1. loop
 2. array
 3. recursive
+4. pointer
+5. string
+6. structure 
+7. file
+
+
+
 
 

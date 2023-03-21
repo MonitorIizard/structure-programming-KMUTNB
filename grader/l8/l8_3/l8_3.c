@@ -21,7 +21,7 @@ int main () {
     int i = 0;
     int size = 0;
 
-    fgets(messege);
+    scanf("%[^\n]", messege);
     //printf("%s", messege);
 
     for (int i = 0; i < 100; i++){
