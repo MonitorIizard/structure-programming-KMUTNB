@@ -19,14 +19,15 @@ int main () {
     int SIZE = 0;
     scanf("%d", &SIZE);
 
+    int answer[100];
     for (int i = 0; i < SIZE; i++) {
         scanf("%f %f %f", &coordinate[i].x, &coordinate[i].y, &coordinate[i].z);
-        printf("%.2f", FindLength(coordinate[i].x, coordinate[i].y, coordinate[i].z));
+        answer[i] = FindLength(coordinate[i].x, coordinate[i].y, coordinate[i].z);
     }
 
-    // for (int i = 0; i < SIZE; i++) {
-        
-    // }
+    for (int i = 0; i < SIZE; i++) {
+        printf("%.2f\n", FindLength(coordinate[i].x, coordinate[i].y, coordinate[i].z));
+    }
 
     return 0;
 }
