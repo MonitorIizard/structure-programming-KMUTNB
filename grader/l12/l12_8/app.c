@@ -1,108 +1,95 @@
-// #include <stdio.h>
-// #include <string.h>
-
-// typedef struct {
-//     char id[100];
-//     char productName[100];
-//     int cost;
-
-// }createProductStruct;
-
-// int main () {
-//     createProductStruct productFile[100];
-//     FILE *fptr;
-//     fptr = fopen("product.txt", "r");
-
-//     char buf1[100];
-//     char buf2[100];
-//     char buf3[100];
-//     int buf4;
-//     int i = 0;
-
-//     printf("%d\n", fscanf(fptr, "%s %s %s %d", buf1, buf2, buf3, &buf4));
-//     while (fscanf(fptr, "%s %s %s %d", buf1, buf2, buf3) > 0) {
-//         //printf("%d\n", fscanf(fptr, "%s %s %s %d", buf1, buf2, buf3, &buf4));
-//         if (fscanf(fptr, "%s %s %s %d", buf1, buf2, buf3, &buf4) == 4) {
-//             char *ptr;
-//             ptr = buf2;
-
-//             char *ptr2;
-//             ptr2 = buf1;
-
-//             int j = 3;
-//             while (*ptr != '\0') {
-//                 ptr += 1;
-//                 ptr2 = ptr2 + j;
-//                 //*ptr2 = *ptr;
-//                 printf("%c", *ptr);
-//                 j += 1;
-//             }
-//             //strcpy(productFile[i].productName, buf1);
-//             printf("productName = %s", buf1);
-//         }
-//         else {
-
-//         }
-//         //strcpy(productFile[i].name, buf);
-//         //printf("%s\n", buf1);
-//         // printf("%d\n", buf4);
-//     }
-        
-
-//     // printf("%p", fptr);
-
-//     fclose(fptr); 
-
-//     return 0;
-// }
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-
-#define MAX_ITEMS 100
-
-struct item {
-    char id[10];
+#include <stdlib.h>
+typedef struct
+{
+    char id[16];
     char name[100];
     int price;
-};
+    int count;
+    int sum;
+} item;
 
-int main() {
-    FILE *fp;
-    char line[200];
-    struct item items[MAX_ITEMS];
-    int i = 0;
+void readFirstFile(char *fileName, item *items) {
+    FILE *fptr;
+    fptr = fopen(fileName, "r");
+    char line[100];
 
-    fp = fopen("product.txt", "r");
-    if (fp == NULL) {
-        printf("Error: unable to open file\n");
+    if (fptr == NULL)
+    {
+        printf("file invalid");
         exit(1);
     }
+    else
+    {
+        int i = 0;
+        while (fgets(line, sizeof(line), fptr) != NULL)
+        {
+            *(line + strlen(line) - 1) = '\0'; // บรรทัดสุดท้ายของเเต่ละรรทัดในไฟล์จะเป็น \n เราเปลี่ยนจาก \n เป็น \0
 
-    while (fgets(line, sizeof(line), fp) != NULL) {
-        char *token = strtok(line, " ");
-        strcpy(items[i].id, token);
-        token = strtok(NULL, " ");
-        while (token != NULL) {
-            if (items[i].price == 0) {
-                items[i].price = atoi(token);
-            } else {
-                strcat(items[i].name, token);
-                strcat(items[i].name, " ");
-            }
+            char *token = strtok(line, " ");
+            strcpy((*items).id, token);
+
             token = strtok(NULL, " ");
+
+            char buf[4][100];
+            int j = 0;
+
+            while (token != NULL)
+            {
+                // printf("%d ", items[i].price);
+                strcpy(buf[j], token);
+                token = strtok(NULL, " ");
+                j++;
+            }
+
+            strcpy(items -> name, j == 2 ? buf[0] : strcat(strcat(buf[0], " "), buf[1]));
+            items -> price = atoi(buf[j - 1]);
+
+            //printf("%s %s %d", items -> id, items -> name, items -> price);
+            //printf("\n");
+            items++;
         }
-        items[i].name[strlen(items[i].name) - 1] = '\0'; // remove the last space
-        i++;
     }
 
-    fclose(fp);
+    fclose(fptr);
+}
 
-    // print the items
-    for (int j = 0; j < i; j++) {
-        printf("%s %s %d\n", items[j].id, items[j].name, items[j].price);
+void readSecondFile (char *filePath, item *items) {
+    FILE *ptr;
+    ptr = fopen(filePath, "r");
+    int count[7];
+    while (fscanf(ptr, "%d %d %d %d %d %d %d", &count[0], &count[1], &count[2], &count[3], &count[4], &count[5], &count[6]) != EOF) {
+        for (int i = 0; i < 7; i++) {
+            items -> count += count[i];
+            //printf("%d", count[i]);
+        }
+        items -> sum = (items -> count) * (items -> price);
+        //printf("%d\n", items -> sum);
+        items++;
+    }
+    fclose(ptr);
+}
+
+void writeFile (char *fileName, item *items) {
+    FILE *ptr;
+    ptr = fopen(fileName, "w");
+    while (strcmp(items -> id, "")) {
+        fprintf(ptr, "%s %s %d %d\n", items -> id, items -> name, items -> price, items -> sum);
+        items++;
     }
 
+}
+
+int main()
+{
+    char *firstFilePath = "product.txt";
+    char *secondFilePath = "sale.txt";
+    char *thirdFilePath = "report.txt";
+    item items[100];
+    readFirstFile(firstFilePath, items);
+    readSecondFile(secondFilePath, items);
+    writeFile(thirdFilePath, items);
+    //printf("x%sx", items[99].id);
     return 0;
 }
